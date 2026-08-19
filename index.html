@@ -79,7 +79,7 @@ body {
 .hero-visual {
   position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
   width: 45%; max-width: 550px; aspect-ratio: 4/5;
-  background-image: url('https://pixabay.com/get/g68b7892495f87a525c25fa99c1292ab0f2cb368e0bb3b08d1fcf185b676e8889344204a0853d229ad02f9019da7825f3bf94a80cbd917c2b30b6be96954440a4_1280.jpg');
+  background-image: url('imagenes/hero-clinic.webp');
   background-size: cover; background-position: center;
   border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
   display: flex; align-items: center; justify-content: center; overflow: hidden;
@@ -178,6 +178,13 @@ body {
   box-shadow: 0 0 0 4px var(--white), 0 0 0 6px var(--gold-pale), var(--shadow-md);
   overflow: hidden; position: relative;
 }
+.team-photo-img {
+  width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 20px;
+  object-fit: cover; display: block;
+  box-shadow: 0 0 0 4px var(--white), 0 0 0 6px var(--gold-pale), var(--shadow-md);
+  transition: transform 0.3s ease;
+}
+.team-card:hover .team-photo-img { transform: scale(1.04); }
 .team-photo::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%); border-radius: 50%; }
 .team-card h3 { font-family: 'Playfair Display', serif; font-size: 1.125rem; font-weight: 600; margin-bottom: 4px; }
 .team-role { font-size: 0.8125rem; color: var(--gold); font-weight: 500; margin-bottom: 8px; }
@@ -346,10 +353,10 @@ body {
     <h2 class="section-title">Un espacio diseñado<br>para tu bienestar.</h2>
     <p class="section-desc">Cada detalle de nuestras instalaciones está pensado para que te sientas en calma desde el primer momento.</p>
     <div class="clinic-gallery">
-      <div class="clinic-main" style="background-image: url('https://pixabay.com/get/g68b7892495f87a525c25fa99c1292ab0f2cb368e0bb3b08d1fcf185b676e8889344204a0853d229ad02f9019da7825f3bf94a80cbd917c2b30b6be96954440a4_1280.jpg');"></div>
+      <div class="clinic-main" style="background-image: url('imagenes/clinic-room-1.webp');"></div>
       <div class="clinic-side">
-        <div class="clinic-side-top" style="background-image: url('https://pixabay.com/get/g2a5e4ad44d015d2793344b2c5b5731c768f93943f7d3e050d3bb4a064dc4a6a275dc940420c58fa5dd9f3dc9535f676a74a966fc8c185505b97b01e620b477bd_1280.jpg');"></div>
-        <div class="clinic-side-bottom" style="background-image: url('https://pixabay.com/get/g331ac8e76a861bc1e6a51467aad507658b170b64dc492b3ea21d43d63ee5fcfd3787eea20a284da264cb8813f3e25e5f15c9cfe40ce8f3d167f995328ecbcd47_1280.jpg');"></div>
+        <div class="clinic-side-top" style="background-image: url('imagenes/clinic-room-2.webp');"></div>
+        <div class="clinic-side-bottom" style="background-image: url('imagenes/smile-results.webp');"></div>
       </div>
     </div>
   </div>
@@ -362,9 +369,9 @@ body {
     <h2 class="section-title">Conoce a quienes<br>cuidan de ti.</h2>
     <p class="section-desc">Un equipo de élite donde cada sonrisa tiene detrás a los mejores especialistas.</p>
     <div class="team-grid">
-      <div class="team-card"><div class="team-photo">AV</div><h3>Dr. Alejandro Vega</h3><div class="team-role">Director Clínico · Implantología</div><p class="team-bio">20 años de experiencia. Formado en la Universidad de Nueva York. +3,000 implantes colocados.</p></div>
-      <div class="team-card"><div class="team-photo">CR</div><h3>Dra. Carmen Rueda</h3><div class="team-role">Estética Dental · Ortodoncia</div><p class="team-bio">Especialista en diseño de sonrisa digital. Formación en Milán y Barcelona. El detalle es su firma.</p></div>
-      <div class="team-card"><div class="team-photo">MI</div><h3>Dr. Mateo Ibáñez</h3><div class="team-role">Odontopediatría · Sedación</div><p class="team-bio">El favorito de los pequeños. Certificado en sedación consciente. Hace que ir al dentista sea un juego.</p></div>
+      <div class="team-card"><img src="imagenes/doctor-carlos.webp" alt="Dr. Alejandro Vega" class="team-photo-img"><h3>Dr. Alejandro Vega</h3><div class="team-role">Director Clínico · Implantología</div><p class="team-bio">20 años de experiencia. Formado en la Universidad de Nueva York. +3,000 implantes colocados.</p></div>
+      <div class="team-card"><img src="imagenes/doctora-elena.webp" alt="Dra. Carmen Rueda" class="team-photo-img"><h3>Dra. Carmen Rueda</h3><div class="team-role">Estética Dental · Ortodoncia</div><p class="team-bio">Especialista en diseño de sonrisa digital. Formación en Milán y Barcelona. El detalle es su firma.</p></div>
+      <div class="team-card"><img src="imagenes/doctor-javier.webp" alt="Dr. Mateo Ibáñez" class="team-photo-img"><h3>Dr. Mateo Ibáñez</h3><div class="team-role">Odontopediatría · Sedación</div><p class="team-bio">El favorito de los pequeños. Certificado en sedación consciente. Hace que ir al dentista sea un juego.</p></div>
     </div>
   </div>
 </section>
