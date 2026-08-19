@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Áurea Dental — Odontología de Excelencia</title>
-<meta name="description" content="Clínica dental premium en Madrid. Tecnología de vanguardia, especialistas de élite y un enfoque humano. Tu sonrisa merece lo mejor.">
+<meta name="description" content="Clínica dental boutique en Madrid. Tecnología de vanguardia, especialistas de élite y un enfoque humano. Tu sonrisa merece arte.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
 <style>
 :root {
   --gold: #C6A962;
-  --gold-light: #D4C08C;
+  --gold-light: #DFCA95;
   --gold-dark: #A68A3E;
   --gold-pale: #F5EFE0;
+  --gold-glow: rgba(198, 169, 98, 0.28);
   --cream: #FAF8F4;
   --white: #FFFFFF;
   --ink: #1A1A1A;
@@ -21,15 +22,15 @@
   --ink-60: rgba(26, 26, 26, 0.60);
   --ink-40: rgba(26, 26, 26, 0.40);
   --surface: #F5F2EB;
-  --border: rgba(0,0,0,0.06);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-  --shadow-md: 0 8px 40px rgba(0,0,0,0.08);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,0.10);
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --border: rgba(198, 169, 98, 0.18);
+  --shadow-sm: 0 2px 8px rgba(26, 26, 26, 0.04);
+  --shadow-md: 0 12px 36px rgba(198, 169, 98, 0.12), 0 4px 12px rgba(26,26,26,0.04);
+  --shadow-lg: 0 24px 64px rgba(26, 26, 26, 0.10), 0 8px 24px rgba(198, 169, 98, 0.15);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --radius-pill: 980px;
-  --max-width: 1100px;
+  --max-width: 1120px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,238 +41,450 @@ body {
   color: var(--ink); background: var(--cream);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* === AMBIENT GLOW ORBS === */
+.ambient-orb {
+  position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+  filter: blur(80px); opacity: 0.45; animation: orbFloat 14s ease-in-out infinite alternate;
+}
+.orb-1 { width: 550px; height: 550px; top: 0; right: -120px; background: radial-gradient(circle, rgba(198,169,98,0.35) 0%, rgba(223,202,149,0.1) 70%, transparent 100%); }
+.orb-2 { width: 450px; height: 450px; top: 800px; left: -100px; background: radial-gradient(circle, rgba(198,169,98,0.25) 0%, transparent 70%); animation-duration: 18s; animation-delay: -5s; }
+.orb-3 { width: 600px; height: 600px; top: 2200px; right: -150px; background: radial-gradient(circle, rgba(198,169,98,0.2) 0%, transparent 70%); animation-duration: 20s; }
+
+@keyframes orbFloat {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.08) translateX(20px); }
+  100% { transform: translateY(30px) scale(0.95) translateX(-20px); }
 }
 
 /* === NAV === */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(250, 248, 244, 0.85);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--border); transition: all 0.3s ease;
+  background: rgba(250, 248, 244, 0.75);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border-bottom: 1px solid var(--border); transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav.scrolled { background: rgba(250, 248, 244, 0.95); box-shadow: var(--shadow-sm); }
-.nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; }
-.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.3px; }
+.nav.scrolled {
+  background: rgba(250, 248, 244, 0.92);
+  box-shadow: 0 8px 30px rgba(198, 169, 98, 0.08);
+}
+.nav-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 72px;
+}
+.logo {
+  font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 600;
+  color: var(--ink); text-decoration: none; letter-spacing: -0.3px;
+  display: inline-flex; align-items: center; gap: 4px;
+}
 .logo span { color: var(--gold); }
-.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--ink-60); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.3px; text-transform: uppercase; transition: color 0.2s; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--ink-80); font-size: 0.8125rem;
+  font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+  transition: color 0.25s, transform 0.2s; position: relative;
+}
+.nav-links a:not(.btn-nav)::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+  background: var(--gold); transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .nav-links a:hover { color: var(--ink); }
-.btn-nav { background: var(--gold); color: var(--white) !important; padding: 10px 24px; border-radius: var(--radius-pill); font-weight: 600 !important; text-transform: none !important; font-size: 0.875rem !important; transition: all 0.2s !important; }
-.btn-nav:hover { background: var(--gold-dark); }
-.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-links a:hover::after { width: 100%; }
+
+.btn-nav {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white) !important; padding: 11px 26px; border-radius: var(--radius-pill);
+  font-weight: 600 !important; text-transform: none !important; font-size: 0.875rem !important;
+  box-shadow: 0 4px 18px rgba(198, 169, 98, 0.35); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.btn-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(198, 169, 98, 0.5);
+}
+.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 6px; }
 .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--ink); transition: all 0.3s; }
 
 /* === HERO === */
 .hero {
   min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden;
-  background: linear-gradient(135deg, var(--cream) 0%, var(--gold-pale) 40%, #EDE4D0 100%);
-  padding: 120px 40px 80px;
+  background: linear-gradient(135deg, #FAF8F4 0%, #F6EFE2 40%, #EFE5D1 100%);
+  padding: 130px 40px 90px;
 }
-.hero-accent { position: absolute; top: -200px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(198, 169, 98, 0.15) 0%, transparent 70%); pointer-events: none; }
-.hero-accent-2 { position: absolute; bottom: -100px; left: -50px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(198, 169, 98, 0.10) 0%, transparent 70%); pointer-events: none; }
-.hero-inner { max-width: var(--max-width); margin: 0 auto; width: 100%; position: relative; z-index: 1; }
-.hero-badge { display: inline-block; padding: 6px 16px; border-radius: var(--radius-pill); background: rgba(198, 169, 98, 0.12); color: var(--gold-dark); font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 32px; }
-.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.5px; color: var(--ink); max-width: 700px; margin-bottom: 24px; }
-.hero h1 em { font-style: italic; color: var(--gold); }
-.hero-subtitle { font-size: 1.125rem; color: var(--ink-60); max-width: 480px; line-height: 1.7; margin-bottom: 40px; font-weight: 400; }
+.hero-inner {
+  max-width: var(--max-width); margin: 0 auto; width: 100%; position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center;
+}
+.hero-content { max-width: 620px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 18px; border-radius: var(--radius-pill);
+  background: rgba(198, 169, 98, 0.14); border: 1px solid rgba(198, 169, 98, 0.3);
+  color: var(--gold-dark); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 28px;
+  backdrop-filter: blur(10px);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 600; line-height: 1.08; letter-spacing: -0.8px; color: var(--ink);
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic; color: var(--gold-dark);
+  background: linear-gradient(135deg, #C6A962 0%, #9B7C2B 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-subtitle {
+  font-size: 1.125rem; color: var(--ink-80); line-height: 1.75;
+  margin-bottom: 40px; font-weight: 400; max-width: 520px;
+}
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero-visual {
-  position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
-  width: 45%; max-width: 550px; aspect-ratio: 4/5;
+
+/* === CAMOUFLAGED & INTEGRATED HERO VISUAL === */
+.hero-visual-container {
+  position: relative; width: 100%; aspect-ratio: 1/1; max-width: 520px;
+  margin: 0 auto; display: flex; align-items: center; justify-content: center;
+}
+
+/* Seamless blend background mask */
+.hero-backdrop-image {
+  position: absolute; inset: 0; border-radius: 36px;
   background-image: url('imagenes/hero-clinic.webp');
   background-size: cover; background-position: center;
-  border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
+  opacity: 0.65;
+  filter: contrast(105%) saturate(110%);
+  animation: heroPulse 10s ease-in-out infinite alternate;
+  z-index: 1;
 }
-.hero-visual::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(198,169,98,0.15) 0%, rgba(26,26,26,0.05) 100%);
+
+@keyframes heroPulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.05); opacity: 0.75; }
 }
-.hero-visual-inner {
-  position: relative; z-index: 2;
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
+
+/* Floating Glassmorphic Center Sculpture */
+.hero-glass-core {
+  position: relative; z-index: 3;
+  width: 280px; height: 280px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85) 0%, rgba(250,248,244,0.4) 60%, rgba(198,169,98,0.15) 100%);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 20px 50px rgba(198,169,98,0.22), inset 0 0 30px rgba(255,255,255,0.6);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  animation: coreFloat 6s ease-in-out infinite alternate;
 }
-.hv-tooth { position: relative; z-index: 2; width: 120px; height: 160px; }
-.hv-tooth svg { width: 100%; height: 100%; }
-.hv-ring { position: absolute; z-index: 1; border-radius: 50%; border: 1px solid rgba(198,169,98,0.2); }
-.hv-ring-1 { width: 350px; height: 350px; top: 15%; left: -10%; }
-.hv-ring-2 { width: 280px; height: 280px; bottom: 10%; right: -5%; }
-.hv-ring-3 { width: 200px; height: 200px; top: 5%; right: 15%; }
+
+@keyframes coreFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(1deg); }
+}
+
+.hv-tooth-svg {
+  width: 90px; height: 110px; filter: drop-shadow(0 10px 20px rgba(198,169,98,0.4));
+  animation: toothGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes toothGlow {
+  0% { transform: scale(0.98); }
+  100% { transform: scale(1.04); }
+}
+
+.hero-tagline {
+  font-family: 'Playfair Display', serif; font-size: 0.875rem; font-weight: 600;
+  color: var(--gold-dark); margin-top: 10px; letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* Rotating Golden Orbits */
+.orbital-ring {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  border: 1px solid rgba(198, 169, 98, 0.35); z-index: 2;
+}
+.orbit-1 {
+  width: 380px; height: 380px;
+  border-top-color: var(--gold); border-left-color: transparent;
+  animation: spinOrbit 22s linear infinite;
+}
+.orbit-2 {
+  width: 460px; height: 460px;
+  border-bottom-color: var(--gold); border-right-color: transparent;
+  animation: spinOrbitReverse 30s linear infinite;
+}
+
+@keyframes spinOrbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spinOrbitReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
 /* === BUTTONS === */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 32px; border-radius: var(--radius-pill);
-  background: var(--gold); color: var(--white);
-  text-decoration: none; font-weight: 600; font-size: 0.9375rem;
-  transition: all 0.25s; border: none; cursor: pointer; letter-spacing: -0.1px;
+  padding: 15px 34px; border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9375rem;
+  box-shadow: 0 6px 22px rgba(198, 169, 98, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;
 }
-.btn-primary:hover { background: var(--gold-dark); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(166, 138, 62, 0.25); }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(198, 169, 98, 0.5);
+}
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 32px; border-radius: var(--radius-pill);
-  background: transparent; color: var(--ink);
-  text-decoration: none; font-weight: 500; font-size: 0.9375rem;
-  border: 1.5px solid var(--ink-40); transition: all 0.25s;
+  padding: 15px 34px; border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+  color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.9375rem;
+  border: 1.5px solid rgba(198, 169, 98, 0.35); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-secondary:hover { border-color: var(--ink); background: var(--white); }
+.btn-secondary:hover {
+  border-color: var(--gold); background: var(--white);
+  transform: translateY(-2px); box-shadow: var(--shadow-sm);
+}
 
 /* === SECTIONS === */
-.section { padding: 100px 40px; }
+.section { padding: 110px 40px; position: relative; z-index: 2; }
 .section-alt { background: var(--white); }
-.section-gold { background: linear-gradient(180deg, var(--gold-pale) 0%, var(--cream) 100%); }
-.section-inner { max-width: var(--max-width); margin: 0 auto; }
-.section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 16px; }
-.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.18; letter-spacing: -0.3px; margin-bottom: 16px; color: var(--ink); }
-.section-desc { font-size: 1.0625rem; color: var(--ink-60); max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+.section-gold {
+  background: linear-gradient(180deg, var(--gold-pale) 0%, #FAF8F4 100%);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.section-inner { max-width: var(--max-width); margin: 0 auto; position: relative; z-index: 2; }
+.section-label {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold-dark); margin-bottom: 16px;
+  display: inline-block;
+}
+.section-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  font-weight: 600; line-height: 1.18; letter-spacing: -0.4px; margin-bottom: 18px; color: var(--ink);
+}
+.section-desc { font-size: 1.0625rem; color: var(--ink-80); max-width: 580px; line-height: 1.75; margin-bottom: 52px; }
 
-/* === SERVICES === */
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+/* === SERVICES GRID === */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .service-card {
   background: var(--white); border-radius: var(--radius-md);
-  padding: 40px 32px; box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border); transition: all 0.3s ease; position: relative; overflow: hidden;
+  padding: 42px 34px; box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative; overflow: hidden;
 }
-.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); opacity: 0; transition: opacity 0.3s; }
-.service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3.5px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  opacity: 0; transition: opacity 0.3s;
+}
+.service-card:hover {
+  box-shadow: var(--shadow-md); transform: translateY(-6px);
+  border-color: rgba(198, 169, 98, 0.45);
+}
 .service-card:hover::before { opacity: 1; }
-.service-icon { width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--gold-pale); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 24px; }
-.service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
-.service-card p { font-size: 0.9375rem; color: var(--ink-60); line-height: 1.6; }
+.service-icon {
+  width: 52px; height: 52px; border-radius: var(--radius-sm);
+  background: var(--gold-pale); border: 1px solid rgba(198,169,98,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; margin-bottom: 24px; transition: transform 0.3s;
+}
+.service-card:hover .service-icon { transform: scale(1.08) rotate(3deg); }
+.service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
+.service-card p { font-size: 0.9375rem; color: var(--ink-60); line-height: 1.65; }
 
-/* === CLINIC GALLERY === */
-.clinic-gallery { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; height: 420px; }
-.clinic-main {
-  border-radius: var(--radius-md); background-size: cover; background-position: center;
-  box-shadow: var(--shadow-md); transition: transform 0.3s;
+/* === WHY AUREA FEATURES === */
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 64px; }
+.feature-item { display: flex; gap: 24px; align-items: flex-start; }
+.feature-num {
+  font-family: 'Playfair Display', serif; font-size: 2.75rem; color: var(--gold);
+  font-weight: 500; line-height: 1; flex-shrink: 0;
+  text-shadow: 0 4px 12px rgba(198,169,98,0.25);
 }
-.clinic-main:hover { transform: scale(1.01); }
-.clinic-side { display: flex; flex-direction: column; gap: 16px; }
-.clinic-side-top, .clinic-side-bottom {
-  flex: 1; border-radius: var(--radius-md); background-size: cover; background-position: center;
-  box-shadow: var(--shadow-sm); transition: transform 0.3s;
+.feature-text h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+.feature-text p { font-size: 0.9375rem; color: var(--ink-60); line-height: 1.65; }
+
+/* === BENTO CLINIC GALLERY WITH CINEMATIC INTEGRATION === */
+.clinic-gallery {
+  display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; height: 460px;
 }
-.clinic-side-top:hover, .clinic-side-bottom:hover { transform: scale(1.02); }
+.gallery-card {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-md); border: 1px solid rgba(198, 169, 98, 0.25);
+  cursor: pointer;
+}
+.gallery-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-card:hover .gallery-bg { transform: scale(1.05); }
+
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.2) 40%, rgba(26,26,26,0.78) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
+  transition: background 0.3s;
+}
+.gallery-card:hover .gallery-overlay {
+  background: linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.15) 30%, rgba(26,26,26,0.85) 100%);
+}
+.gallery-tag {
+  display: inline-block; padding: 4px 12px; border-radius: var(--radius-pill);
+  background: rgba(198, 169, 98, 0.85); color: var(--white);
+  font-size: 0.6875rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 8px; width: fit-content;
+}
+.gallery-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.gallery-sub { font-size: 0.8125rem; color: rgba(255,255,255,0.75); }
+
+.clinic-side { display: flex; flex-direction: column; gap: 20px; }
+.clinic-side .gallery-card { flex: 1; }
+.clinic-side .gallery-overlay { padding: 20px; }
+.clinic-side .gallery-title { font-size: 1.05rem; }
+
 @media (max-width: 768px) {
   .clinic-gallery { grid-template-columns: 1fr; height: auto; }
-  .clinic-main { height: 250px; }
-  .clinic-side-top, .clinic-side-bottom { height: 180px; }
+  .clinic-main-card { height: 280px; }
+  .clinic-side .gallery-card { height: 200px; }
 }
 
-/* === FEATURES === */
-.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 64px; }
-.feature-item { display: flex; gap: 20px; }
-.feature-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); font-weight: 500; line-height: 1; flex-shrink: 0; }
-.feature-text h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
-.feature-text p { font-size: 0.9375rem; color: var(--ink-60); line-height: 1.6; }
-
-/* === TEAM === */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.team-card { text-align: center; }
+/* === TEAM SECTION (PRESERVED LUXURY MONOGRAMS) === */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+.team-card {
+  text-align: center; background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(12px); border-radius: var(--radius-md);
+  padding: 36px 24px; border: 1px solid var(--border);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.team-card:hover {
+  background: var(--white); transform: translateY(-6px);
+  box-shadow: var(--shadow-md); border-color: var(--gold);
+}
 .team-photo {
-  width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 20px;
+  width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
   background: linear-gradient(135deg, #EDE0C8 0%, #D4B88C 50%, #C6A962 100%);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 600; color: var(--white);
-  box-shadow: 0 0 0 4px var(--white), 0 0 0 6px var(--gold-pale), var(--shadow-md);
-  overflow: hidden; position: relative;
+  font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 600; color: var(--white);
+  box-shadow: 0 0 0 4px var(--white), 0 0 0 6px rgba(198,169,98,0.35), var(--shadow-md);
+  position: relative; transition: transform 0.4s;
 }
-.team-photo-img {
-  width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 20px;
-  object-fit: cover; display: block;
-  box-shadow: 0 0 0 4px var(--white), 0 0 0 6px var(--gold-pale), var(--shadow-md);
-  transition: transform 0.3s ease;
-}
-.team-card:hover .team-photo-img { transform: scale(1.04); }
-.team-photo::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%); border-radius: 50%; }
-.team-card h3 { font-family: 'Playfair Display', serif; font-size: 1.125rem; font-weight: 600; margin-bottom: 4px; }
-.team-role { font-size: 0.8125rem; color: var(--gold); font-weight: 500; margin-bottom: 8px; }
-.team-bio { font-size: 0.875rem; color: var(--ink-60); line-height: 1.6; max-width: 240px; margin: 0 auto; }
+.team-card:hover .team-photo { transform: scale(1.06); }
+.team-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.team-role { font-size: 0.8125rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 12px; }
+.team-bio { font-size: 0.875rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin: 0 auto; }
 
 /* === TESTIMONIALS === */
-.testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.testimonial-card { background: var(--white); border-radius: var(--radius-md); padding: 36px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
-.testimonial-card .stars { color: var(--gold); font-size: 0.875rem; margin-bottom: 16px; letter-spacing: 2px; }
-.testimonial-card blockquote { font-family: 'Playfair Display', serif; font-size: 1.0625rem; line-height: 1.7; color: var(--ink-80); font-style: italic; margin-bottom: 20px; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.testimonial-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 40px 36px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  transition: all 0.3s; position: relative;
+}
+.testimonial-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.testimonial-card .stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 3px; }
+.testimonial-card blockquote {
+  font-family: 'Playfair Display', serif; font-size: 1.0625rem;
+  line-height: 1.75; color: var(--ink-80); font-style: italic; margin-bottom: 24px;
+}
 .testimonial-author { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
 .testimonial-author span { color: var(--ink-60); font-weight: 400; }
 
 /* === CTA BANNER === */
-.cta-banner { background: linear-gradient(135deg, var(--ink) 0%, #2A2520 100%); color: var(--white); text-align: center; padding: 80px 40px; }
+.cta-banner {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2520 50%, #151412 100%);
+  color: var(--white); text-align: center; padding: 90px 40px; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(198,169,98,0.15) 0%, transparent 70%);
+}
 .cta-banner .section-label { color: var(--gold-light); }
 .cta-banner .section-title { color: var(--white); }
-.cta-banner .section-desc { color: rgba(255,255,255,0.65); margin-left: auto; margin-right: auto; }
-.cta-banner .btn-primary { background: var(--white); color: var(--ink); }
-.cta-banner .btn-primary:hover { background: var(--gold-pale); box-shadow: 0 8px 30px rgba(255,255,255,0.15); }
+.cta-banner .section-desc { color: rgba(255,255,255,0.7); margin-left: auto; margin-right: auto; }
+.cta-banner .btn-primary { background: var(--white); color: var(--ink); box-shadow: 0 8px 30px rgba(255,255,255,0.2); }
+.cta-banner .btn-primary:hover { background: var(--gold-pale); transform: translateY(-2px); box-shadow: 0 12px 35px rgba(198, 169, 98, 0.4); }
 
 /* === CONTACT === */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-.contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; margin-bottom: 8px; }
-.contact-info p { color: var(--ink-60); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 24px; }
-.contact-detail { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
-.contact-detail span:first-child { font-size: 1.125rem; flex-shrink: 0; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 8px; }
+.contact-info p { color: var(--ink-60); font-size: 0.9375rem; line-height: 1.65; margin-bottom: 28px; }
+.contact-detail { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+.contact-detail span:first-child { font-size: 1.25rem; flex-shrink: 0; }
 .contact-detail span:last-child { font-size: 0.9375rem; color: var(--ink-80); }
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
-.form-group input, .form-group textarea, .form-group select {
-  width: 100%; padding: 14px 16px; border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm); font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem; background: var(--white); transition: all 0.2s; color: var(--ink);
+
+.contact-form {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 40px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
 }
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(198, 169, 98, 0.12); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; padding: 14px 18px; border: 1.5px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-sm); font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem; background: var(--cream); transition: all 0.25s; color: var(--ink);
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  outline: none; border-color: var(--gold); background: var(--white);
+  box-shadow: 0 0 0 4px rgba(198, 169, 98, 0.15);
+}
 .form-group textarea { resize: vertical; min-height: 120px; }
 
 /* === FOOTER === */
-.footer { background: var(--ink); color: rgba(255,255,255,0.6); padding: 60px 40px 32px; }
+.footer { background: var(--ink); color: rgba(255,255,255,0.6); padding: 70px 40px 36px; }
 .footer-inner { max-width: var(--max-width); margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-.footer-brand .logo { color: var(--white); font-size: 1.5rem; display: block; margin-bottom: 12px; }
-.footer-brand p { font-size: 0.875rem; line-height: 1.7; max-width: 280px; }
-.footer-col h4 { color: var(--white); font-size: 0.8125rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+.footer-brand .logo { color: var(--white); font-size: 1.55rem; display: block; margin-bottom: 14px; }
+.footer-brand p { font-size: 0.875rem; line-height: 1.75; max-width: 290px; }
+.footer-col h4 { color: var(--white); font-size: 0.8125rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 22px; }
 .footer-col ul { list-style: none; }
-.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li { margin-bottom: 12px; }
 .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
 .footer-col ul li a:hover { color: var(--gold-light); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 0.8125rem; flex-wrap: wrap; gap: 12px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; justify-content: space-between; font-size: 0.8125rem; flex-wrap: wrap; gap: 12px; }
 
 /* === ANIMATIONS === */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-.animate { animation: fadeUp 0.6s ease forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.animate { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .animate-d1 { animation-delay: 0.1s; opacity: 0; }
-.animate-d2 { animation-delay: 0.2s; opacity: 0; }
-.animate-d3 { animation-delay: 0.3s; opacity: 0; }
+.animate-d2 { animation-delay: 0.25s; opacity: 0; }
+.animate-d3 { animation-delay: 0.4s; opacity: 0; }
 
 /* === RESPONSIVE === */
-@media (max-width: 1024px) { .hero-visual { display: none; } }
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-content { max-width: 100%; margin: 0 auto; }
+  .hero-ctas { justify-content: center; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-visual-container { max-width: 380px; margin-top: 20px; }
+}
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .menu-toggle { display: flex; }
-  .hero { padding: 100px 24px 60px; text-align: center; }
-  .hero h1, .hero-subtitle { max-width: 100%; }
-  .hero-subtitle { margin-left: auto; margin-right: auto; }
-  .hero-ctas { justify-content: center; }
-  .services-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
   .features-grid { grid-template-columns: 1fr; gap: 32px; }
   .team-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .section { padding: 64px 24px; }
+  .section { padding: 75px 24px; }
 }
-@media (max-width: 500px) {
+@media (max-width: 560px) {
+  .services-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
-.nav.open .nav-links { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); padding: 32px 24px; gap: 20px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); }
-@media (prefers-reduced-motion: reduce) {
-  .animate, .animate-d1, .animate-d2, .animate-d3 { animation: none; opacity: 1; }
-  * { transition-duration: 0.01ms !important; }
+.nav.open .nav-links {
+  display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0;
+  background: var(--cream); padding: 32px 24px; gap: 20px; border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
 }
 </style>
 </head>
 <body>
+
+<!-- AMBIENT GLOW ORBS -->
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="ambient-orb orb-3"></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
@@ -280,6 +493,7 @@ body {
     <ul class="nav-links" id="navLinks">
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#clinica">Instalaciones</a></li>
       <li><a href="#equipo">Equipo</a></li>
       <li><a href="#testimonios">Testimonios</a></li>
       <li><a href="#contacto" class="btn-nav">Agendar Visita</a></li>
@@ -290,88 +504,128 @@ body {
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <div class="hero-accent"></div>
-  <div class="hero-accent-2"></div>
   <div class="hero-inner">
-    <div class="hero-badge animate animate-d1">⭐ Excelencia desde 2012</div>
-    <h1 class="animate animate-d1">Tu sonrisa<br><em>merece</em> arte.</h1>
-    <p class="hero-subtitle animate animate-d2">Combinamos tecnología de vanguardia con un enfoque profundamente humano. No hacemos odontología — creamos confianza, una sonrisa a la vez.</p>
-    <div class="hero-ctas animate animate-d3">
-      <a href="#contacto" class="btn-primary">Agendar Consulta →</a>
-      <a href="#servicios" class="btn-secondary">Conocer Servicios</a>
+    <div class="hero-content">
+      <div class="hero-badge animate animate-d1">⭐ Odontología Boutique · Madrid</div>
+      <h1 class="animate animate-d1">Tu sonrisa<br><em>merece</em> arte.</h1>
+      <p class="hero-subtitle animate animate-d2">Combinamos tecnología de vanguardia con un enfoque profundamente humano. No hacemos odontología estándar — creamos confianza, serenidad y belleza, una sonrisa a la vez.</p>
+      <div class="hero-ctas animate animate-d3">
+        <a href="#contacto" class="btn-primary">Agendar Consulta →</a>
+        <a href="#servicios" class="btn-secondary">Conocer Servicios</a>
+      </div>
     </div>
-  </div>
-  <div class="hero-visual">
-    <div class="hero-visual-inner">
-      <div class="hv-tooth">
-        <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 8 C28 8 14 28 10 48 C6 68 8 88 8 100 C8 112 14 128 28 134 C38 138 46 135 50 128 C54 135 62 138 72 134 C86 128 92 112 92 100 C92 88 94 68 90 48 C86 28 72 8 50 8Z" fill="rgba(255,255,255,0.85)" stroke="rgba(198,169,98,0.6)" stroke-width="2"/>
+    
+    <!-- CAMOUFLAGED & INTEGRATED HERO VISUAL -->
+    <div class="hero-visual-container animate animate-d2">
+      <div class="hero-backdrop-image"></div>
+      <div class="orbital-ring orbit-1"></div>
+      <div class="orbital-ring orbit-2"></div>
+      <div class="hero-glass-core">
+        <svg class="hv-tooth-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldToothGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+              <stop offset="35%" stop-color="#FAF8F4" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#C6A962" stop-opacity="0.4"/>
+            </linearGradient>
+            <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#C6A962"/>
+              <stop offset="100%" stop-color="#DFCA95"/>
+            </linearGradient>
+          </defs>
+          <path d="M50 8 C28 8 14 28 10 48 C6 68 8 88 8 100 C8 112 14 128 28 134 C38 138 46 135 50 128 C54 135 62 138 72 134 C86 128 92 112 92 100 C92 88 94 68 90 48 C86 28 72 8 50 8Z" fill="url(#goldToothGrad)" stroke="url(#goldStroke)" stroke-width="2.5"/>
           <path d="M38 55 C38 48 44 42 50 42 C56 42 62 48 62 55 C62 62 56 68 50 68 C44 68 38 62 38 55Z" fill="rgba(198,169,98,0.3)"/>
           <ellipse cx="50" cy="95" rx="12" ry="16" fill="rgba(198,169,98,0.35)"/>
         </svg>
+        <span class="hero-tagline">Áurea Dental</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="section" id="servicios">
+<section class="section section-alt" id="servicios">
   <div class="section-inner">
-    <div class="section-label">Servicios</div>
+    <div class="section-label">Servicios Exclusivos</div>
     <h2 class="section-title">Cuidado dental de<br>nivel superior.</h2>
     <p class="section-desc">Desde la prevención hasta la estética más avanzada, cada tratamiento es una experiencia de precisión, comodidad y arte.</p>
     <div class="services-grid">
-      <div class="service-card"><div class="service-icon">🦷</div><h3>Estética Dental</h3><p>Carillas de porcelana, blanqueamiento láser y diseño de sonrisa digital. Resultados naturales que transforman.</p></div>
-      <div class="service-card"><div class="service-icon">🔬</div><h3>Implantología</h3><p>Implantes de titanio con planificación 3D guiada por ordenador. La solución definitiva con precisión milimétrica.</p></div>
-      <div class="service-card"><div class="service-icon">✨</div><h3>Ortodoncia Invisible</h3><p>Alineadores transparentes de última generación. Endereza tus dientes sin que nadie lo note.</p></div>
-      <div class="service-card"><div class="service-icon">🛡️</div><h3>Prevención Avanzada</h3><p>Diagnóstico precoz con cámara intraoral y escáner 3D. Cuidamos tu salud antes de que duela.</p></div>
-      <div class="service-card"><div class="service-icon">👶</div><h3>Odontopediatría</h3><p>Primeras visitas sin miedo. Creamos una experiencia positiva que dura toda la vida.</p></div>
-      <div class="service-card"><div class="service-icon">💤</div><h3>Sedación Consciente</h3><p>Para pacientes con ansiedad dental. Tratamientos completos en una sola sesión, sin estrés.</p></div>
+      <div class="service-card"><div class="service-icon">🦷</div><h3>Estética Dental</h3><p>Carillas de porcelana ultrafinas, blanqueamiento láser y diseño de sonrisa digital con resultados naturales.</p></div>
+      <div class="service-card"><div class="service-icon">🔬</div><h3>Implantología 3D</h3><p>Implantes biocompatibles de titanio con tomografía guiada por ordenador y precisión milimétrica.</p></div>
+      <div class="service-card"><div class="service-icon">✨</div><h3>Ortodoncia Invisible</h3><p>Alineadores transparentes de última generación. Endereza tus dientes de manera discreta y cómoda.</p></div>
+      <div class="service-card"><div class="service-icon">🛡️</div><h3>Prevención Avanzada</h3><p>Diagnóstico precoz con escáner intraoral 3D. Cuidamos tu salud antes de cualquier molestia.</p></div>
+      <div class="service-card"><div class="service-icon">💎</div><h3>Rehabilitación Oral</h3><p>Reconstrucciones completas y coronas de circonio monolítico fabricadas con tecnología CAD/CAM.</p></div>
+      <div class="service-card"><div class="service-icon">🌿</div><h3>Sedación Consciente</h3><p>Tratamientos 100% libres de estrés y ansiedad, supervisados por médicos anestesiólogos certificados.</p></div>
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
-<section class="section section-alt" id="nosotros">
+<!-- WHY AUREA -->
+<section class="section" id="nosotros">
   <div class="section-inner">
     <div class="section-label">Por Qué Áurea</div>
     <h2 class="section-title">No todas las clínicas<br>son iguales.</h2>
-    <p class="section-desc">Lo que nos distingue no es solo la tecnología — es cómo la usamos para servirte mejor.</p>
+    <p class="section-desc">Lo que nos distingue no es solo la tecnología — es cómo la usamos para servirte mejor en un entorno de paz absoluta.</p>
     <div class="features-grid">
-      <div class="feature-item"><div class="feature-num">01</div><div class="feature-text"><h3>Tecnología de Precisión</h3><p>Escáner intraoral 3D, tomografía CBCT y fresadora CAD/CAM. Fabricamos coronas en una sola visita.</p></div></div>
-      <div class="feature-item"><div class="feature-num">02</div><div class="feature-text"><h3>Especialistas Dedicados</h3><p>Cada área tiene un responsable experto. No hay generalistas haciendo de todo — hay maestros en cada disciplina.</p></div></div>
-      <div class="feature-item"><div class="feature-num">03</div><div class="feature-text"><h3>Atención Personalizada</h3><p>Máximo 8 pacientes al día. Cada consulta es un momento de calma, sin prisas ni salas de espera abarrotadas.</p></div></div>
-      <div class="feature-item"><div class="feature-num">04</div><div class="feature-text"><h3>Garantía por Escrito</h3><p>Todos nuestros tratamientos incluyen garantía documentada. Porque la excelencia se demuestra, no se promete.</p></div></div>
+      <div class="feature-item"><div class="feature-num">01</div><div class="feature-text"><h3>Tecnología de Precisión</h3><p>Escáner intraoral 3D, tomografía CBCT y fresadora CAD/CAM en clínica. Fabricamos coronas en una sola visita.</p></div></div>
+      <div class="feature-item"><div class="feature-num">02</div><div class="feature-text"><h3>Especialistas Dedicados</h3><p>Cada área tiene un responsable experto con formación internacional. Maestros dedicados a su disciplina.</p></div></div>
+      <div class="feature-item"><div class="feature-num">03</div><div class="feature-text"><h3>Atención Personalizada</h3><p>Máximo 8 pacientes al día. Cada consulta es un momento de calma, sin esperas ni salas abarrotadas.</p></div></div>
+      <div class="feature-item"><div class="feature-num">04</div><div class="feature-text"><h3>Garantía por Escrito</h3><p>Todos nuestros tratamientos incluyen garantía documentada. Porque la excelencia se demuestra.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- CLINIC SHOWCASE -->
-<section class="section" id="clinica">
+<!-- CLINIC SHOWCASE (COHESIVE BENTO GALLERY) -->
+<section class="section section-gold" id="clinica">
   <div class="section-inner">
-    <div class="section-label">Nuestra Clínica</div>
+    <div class="section-label">Nuestras Instalaciones</div>
     <h2 class="section-title">Un espacio diseñado<br>para tu bienestar.</h2>
-    <p class="section-desc">Cada detalle de nuestras instalaciones está pensado para que te sientas en calma desde el primer momento.</p>
+    <p class="section-desc">Cada rincón de nuestra clínica combina mármol travertino, madera de roble e iluminación indirecta para una atmósfera de serenidad total.</p>
+    
     <div class="clinic-gallery">
-      <div class="clinic-main" style="background-image: url('imagenes/clinic-room-1.webp');"></div>
+      <!-- Main Lobby Card -->
+      <div class="gallery-card clinic-main-card">
+        <div class="gallery-bg" style="background-image: url('imagenes/clinic-room-1.webp');"></div>
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Recepción Principal</span>
+          <h3 class="gallery-title">Lobby de Bienvenida & Mármol Travertino</h3>
+          <p class="gallery-sub">Un espacio cálido y relajante con iluminación natural y aromaterapia zen.</p>
+        </div>
+      </div>
+      
+      <!-- Side Cards -->
       <div class="clinic-side">
-        <div class="clinic-side-top" style="background-image: url('imagenes/clinic-room-2.webp');"></div>
-        <div class="clinic-side-bottom" style="background-image: url('imagenes/smile-results.webp');"></div>
+        <div class="gallery-card">
+          <div class="gallery-bg" style="background-image: url('imagenes/clinic-room-2.webp');"></div>
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Suite de Precisión</span>
+            <h3 class="gallery-title">Gabinete Tecnológico 3D</h3>
+            <p class="gallery-sub">Equipamiento ergonómico y escáner digital.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-bg" style="background-image: url('imagenes/clinic-room-3.webp');"></div>
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Zona Privada</span>
+            <h3 class="gallery-title">Lounge VIP de Espera</h3>
+            <p class="gallery-sub">Privacidad y confort antes de tu consulta.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TEAM -->
-<section class="section section-gold" id="equipo">
+<section class="section" id="equipo">
   <div class="section-inner">
-    <div class="section-label">Equipo</div>
+    <div class="section-label">Equipo Médico</div>
     <h2 class="section-title">Conoce a quienes<br>cuidan de ti.</h2>
     <p class="section-desc">Un equipo de élite donde cada sonrisa tiene detrás a los mejores especialistas.</p>
     <div class="team-grid">
-      <div class="team-card"><img src="imagenes/doctor-carlos.webp" alt="Dr. Alejandro Vega" class="team-photo-img"><h3>Dr. Alejandro Vega</h3><div class="team-role">Director Clínico · Implantología</div><p class="team-bio">20 años de experiencia. Formado en la Universidad de Nueva York. +3,000 implantes colocados.</p></div>
-      <div class="team-card"><img src="imagenes/doctora-elena.webp" alt="Dra. Carmen Rueda" class="team-photo-img"><h3>Dra. Carmen Rueda</h3><div class="team-role">Estética Dental · Ortodoncia</div><p class="team-bio">Especialista en diseño de sonrisa digital. Formación en Milán y Barcelona. El detalle es su firma.</p></div>
-      <div class="team-card"><img src="imagenes/doctor-javier.webp" alt="Dr. Mateo Ibáñez" class="team-photo-img"><h3>Dr. Mateo Ibáñez</h3><div class="team-role">Odontopediatría · Sedación</div><p class="team-bio">El favorito de los pequeños. Certificado en sedación consciente. Hace que ir al dentista sea un juego.</p></div>
+      <div class="team-card"><div class="team-photo">AV</div><h3>Dr. Alejandro Vega</h3><div class="team-role">Director Clínico · Implantología</div><p class="team-bio">20 años de experiencia. Formado en la Universidad de Nueva York. +3,000 implantes colocados con éxito.</p></div>
+      <div class="team-card"><div class="team-photo">CR</div><h3>Dra. Carmen Rueda</h3><div class="team-role">Estética Dental · Ortodoncia</div><p class="team-bio">Especialista en diseño de sonrisa digital. Formación en Milán y Barcelona. El detalle es su firma.</p></div>
+      <div class="team-card"><div class="team-photo">MI</div><h3>Dr. Mateo Ibáñez</h3><div class="team-role">Odontopediatría · Sedación</div><p class="team-bio">Certificado en sedación consciente. Hace que el cuidado dental sea una experiencia agradable y sin dolor.</p></div>
     </div>
   </div>
 </section>
@@ -396,7 +650,7 @@ body {
   <div class="section-inner">
     <div class="section-label">Primera Visita</div>
     <h2 class="section-title">Tu primera consulta<br>es un diagnóstico completo.</h2>
-    <p class="section-desc">Escáner 3D, valoración personalizada y un plan de tratamiento a medida. Sin compromiso, sin prisas. Porque tomar decisiones importantes requiere información clara.</p>
+    <p class="section-desc">Escáner 3D, valoración personalizada y un plan de tratamiento a medida. Sin compromiso y sin prisas.</p>
     <a href="#contacto" class="btn-primary">Reservar Mi Diagnóstico →</a>
   </div>
 </section>
@@ -406,7 +660,7 @@ body {
   <div class="section-inner">
     <div class="contact-grid">
       <div class="contact-info">
-        <div class="section-label">Contacto</div>
+        <div class="section-label">Contacto Directo</div>
         <h2 class="section-title">Hablemos de<br>tu sonrisa.</h2>
         <p>Estamos en el corazón de Madrid, en un espacio diseñado para tu comodidad. Escríbenos o llámanos — te responderemos personalmente.</p>
         <div class="contact-detail"><span>📍</span><span>Calle de Velázquez, 87<br>28006 Madrid, España</span></div>
@@ -418,8 +672,8 @@ body {
         <div class="form-group"><label for="name">Nombre completo</label><input type="text" id="name" placeholder="María García" required></div>
         <div class="form-group"><label for="email">Correo electrónico</label><input type="email" id="email" placeholder="maria@email.com" required></div>
         <div class="form-group"><label for="phone">Teléfono</label><input type="tel" id="phone" placeholder="+34 6XX XXX XXX"></div>
-        <div class="form-group"><label for="interest">Me interesa</label><select id="interest"><option value="">Selecciona un servicio</option><option>Estética Dental</option><option>Implantología</option><option>Ortodoncia Invisible</option><option>Prevención / Revisión</option><option>Odontopediatría</option><option>Otro</option></select></div>
-        <div class="form-group"><label for="message">Mensaje (opcional)</label><textarea id="message" placeholder="Cuéntanos qué te preocupa o qué te gustaría mejorar..."></textarea></div>
+        <div class="form-group"><label for="interest">Me interesa</label><select id="interest"><option value="">Selecciona un servicio</option><option>Estética Dental</option><option>Implantología 3D</option><option>Ortodoncia Invisible</option><option>Prevención / Revisión</option><option>Sedación Consciente</option><option>Otro</option></select></div>
+        <div class="form-group"><label for="message">Mensaje (opcional)</label><textarea id="message" placeholder="Cuéntanos qué te gustaría mejorar en tu sonrisa..."></textarea></div>
         <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Solicitar Información →</button>
       </form>
     </div>
@@ -431,8 +685,8 @@ body {
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand"><a href="#" class="logo">Áurea<span>.</span>Dental</a><p>Odontología de excelencia en Madrid. Tecnología, arte y humanidad al servicio de tu sonrisa.</p></div>
-      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#">Estética Dental</a></li><li><a href="#">Implantología</a></li><li><a href="#">Ortodoncia</a></li><li><a href="#">Prevención</a></li></ul></div>
-      <div class="footer-col"><h4>Clínica</h4><ul><li><a href="#">Nuestro Equipo</a></li><li><a href="#">Tecnología</a></li><li><a href="#">Garantía</a></li><li><a href="#">Primera Visita</a></li></ul></div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#servicios">Estética Dental</a></li><li><a href="#servicios">Implantología</a></li><li><a href="#servicios">Ortodoncia</a></li><li><a href="#servicios">Prevención</a></li></ul></div>
+      <div class="footer-col"><h4>Clínica</h4><ul><li><a href="#equipo">Nuestro Equipo</a></li><li><a href="#clinica">Instalaciones</a></li><li><a href="#nosotros">Garantía</a></li><li><a href="#contacto">Primera Visita</a></li></ul></div>
       <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Aviso Legal</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Política de Cookies</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>© 2026 Áurea Dental. Todos los derechos reservados.</span><span>N.º Registro Sanitario: CS-2026-MD-0014</span></div>
@@ -443,11 +697,11 @@ body {
 const nav=document.getElementById('nav'),mt=document.getElementById('menuToggle'),nl=document.getElementById('navLinks');
 mt.addEventListener('click',()=>nav.classList.toggle('open'));
 nl.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>nav.classList.remove('open')));
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
 document.getElementById('contactForm').addEventListener('submit',e=>{
   e.preventDefault();
   const b=e.target.querySelector('button'),t=b.textContent;
-  b.textContent='✓ Enviado — Te contactaremos pronto';b.style.background='#2A8C5A';
+  b.textContent='✓ Solicitud Enviada — Te contactaremos pronto';b.style.background='#2A8C5A';
   setTimeout(()=>{b.textContent=t;b.style.background='';},4000);
 });
 </script>
