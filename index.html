@@ -263,210 +263,117 @@ body {
 }
 .section-desc { font-size: 1.0625rem; color: var(--ink-80); max-width: 580px; line-height: 1.75; margin-bottom: 52px; }
 
-/* === SERVICES GRID === */
+/* === SERVICES GRID (CLAUDE & HIGGSFIELD STYLE) === */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .service-card {
-  background: var(--white); border-radius: var(--radius-md);
-  padding: 42px 34px; box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg); padding: 40px 32px;
+  box-shadow: 0 10px 30px rgba(198, 169, 98, 0.08), 0 2px 6px rgba(26,26,26,0.03);
+  border: 1.5px solid rgba(198, 169, 98, 0.22);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative; overflow: hidden; cursor: pointer;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.service-card-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  opacity: 0.12; filter: contrast(110%);
+  mask-image: radial-gradient(circle at 80% 20%, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(circle at 80% 20%, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 80%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+  pointer-events: none;
+}
+.service-card:hover .service-card-bg {
+  transform: scale(1.08); opacity: 0.22;
 }
 .service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3.5px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  opacity: 0; transition: opacity 0.3s;
-}
-.service-card:hover {
-  box-shadow: var(--shadow-md); transform: translateY(-6px);
-  border-color: rgba(198, 169, 98, 0.45);
-}
-.service-card:hover::before { opacity: 1; }
-.service-icon {
-  width: 52px; height: 52px; border-radius: var(--radius-sm);
-  background: var(--gold-pale); border: 1px solid rgba(198,169,98,0.25);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; margin-bottom: 24px; transition: transform 0.3s;
-}
-.service-card:hover .service-icon { transform: scale(1.08) rotate(3deg); }
-.service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
-.service-card p { font-size: 0.9375rem; color: var(--ink-60); line-height: 1.65; margin-bottom: 16px; }
-.service-link {
-  font-size: 0.8125rem; font-weight: 600; color: var(--gold-dark);
-  display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s;
-}
-.service-card:hover .service-link { gap: 10px; color: var(--gold); }
-
-/* === WHY AUREA FEATURES (SPLIT VISUAL) === */
-.why-aurea-split {
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 52px; align-items: center;
-}
-.why-aurea-image {
-  position: relative; border-radius: var(--radius-lg); overflow: hidden;
-  height: 480px; box-shadow: var(--shadow-lg); border: 1.5px solid rgba(198, 169, 98, 0.35);
-}
-.why-aurea-img-bg {
-  position: absolute; inset: 0; background-image: url('imagenes/clinic-room-2.webp');
-  background-size: cover; background-position: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.why-aurea-image:hover .why-aurea-img-bg { transform: scale(1.04); }
-.why-aurea-badge {
-  position: absolute; bottom: 24px; left: 24px; right: 24px;
-  background: rgba(250, 248, 244, 0.9); backdrop-filter: blur(16px);
-  border: 1px solid rgba(198, 169, 98, 0.3); border-radius: var(--radius-md);
-  padding: 16px 20px; box-shadow: var(--shadow-md);
-}
-.why-aurea-badge h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--ink); margin-bottom: 2px; }
-.why-aurea-badge p { font-size: 0.8125rem; color: var(--gold-dark); font-weight: 500; }
-
-.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px; }
-.feature-item { display: flex; gap: 18px; align-items: flex-start; }
-.feature-num {
-  font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold);
-  font-weight: 500; line-height: 1; flex-shrink: 0;
-}
-.feature-text h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
-.feature-text p { font-size: 0.875rem; color: var(--ink-60); line-height: 1.6; }
-
-/* === CTA BANNER WITH AMBIENT IMAGE === */
-.cta-banner {
-  position: relative; overflow: hidden; padding: 110px 40px; text-align: center; color: var(--white);
-  background-image: url('imagenes/clinic-room-3.webp');
-  background-size: cover; background-position: center; background-attachment: fixed;
-}
-.cta-banner::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(26,26,26,0.92) 0%, rgba(38,32,24,0.88) 100%);
-  backdrop-filter: blur(4px);
-}
-.cta-banner .section-inner { position: relative; z-index: 2; }
-
-/* === BENTO CLINIC GALLERY === */
-.clinic-gallery {
-  display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; height: 460px;
-}
-.gallery-card {
-  position: relative; border-radius: var(--radius-lg); overflow: hidden;
-  box-shadow: var(--shadow-md); border: 1px solid rgba(198, 169, 98, 0.25);
-  cursor: pointer;
-}
-.gallery-bg {
-  position: absolute; inset: 0; background-size: cover; background-position: center;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.gallery-card:hover .gallery-bg { transform: scale(1.05); }
-
-.gallery-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.2) 40%, rgba(26,26,26,0.78) 100%);
-  display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
-  transition: background 0.3s;
-}
-.gallery-card:hover .gallery-overlay {
-  background: linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.15) 30%, rgba(26,26,26,0.85) 100%);
-}
-.gallery-tag {
-  display: inline-block; padding: 4px 12px; border-radius: var(--radius-pill);
-  background: rgba(198, 169, 98, 0.85); color: var(--white);
-  font-size: 0.6875rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-  margin-bottom: 8px; width: fit-content;
-}
-.gallery-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
-.gallery-sub { font-size: 0.8125rem; color: rgba(255,255,255,0.75); }
-
-.clinic-side { display: flex; flex-direction: column; gap: 20px; }
-.clinic-side .gallery-card { flex: 1; }
-.clinic-side .gallery-overlay { padding: 20px; }
-.clinic-side .gallery-title { font-size: 1.05rem; }
-
-@media (max-width: 768px) {
-  .clinic-gallery { grid-template-columns: 1fr; height: auto; }
-  .clinic-main-card { height: 280px; }
-  .clinic-side .gallery-card { height: 200px; }
-}
-
-/* === TEAM SECTION (HERO-LEVEL GLOW & INTERACTION) === */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.team-card {
-  text-align: center; background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  border-radius: var(--radius-lg); padding: 48px 30px 42px;
-  border: 1.5px solid rgba(198, 169, 98, 0.25);
-  box-shadow: 0 12px 36px rgba(198, 169, 98, 0.10), 0 2px 8px rgba(26,26,26,0.03);
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative; overflow: hidden;
-}
-.team-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3.5px;
   background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), transparent);
   opacity: 0; transition: opacity 0.3s;
 }
-.team-card:hover {
-  background: var(--white); transform: translateY(-10px);
-  box-shadow: 0 24px 60px rgba(198, 169, 98, 0.22), 0 6px 20px rgba(26,26,26,0.06);
+.service-card:hover {
+  background: var(--white);
+  box-shadow: 0 20px 50px rgba(198, 169, 98, 0.22), 0 6px 16px rgba(26,26,26,0.05);
+  transform: translateY(-8px);
   border-color: var(--gold);
 }
-.team-card:hover::before { opacity: 1; }
+.service-card:hover::before { opacity: 1; }
 
-.team-avatar-wrap {
-  position: relative; width: 140px; height: 140px; margin: 0 auto 26px;
+.service-icon-box {
+  width: 60px; height: 60px; border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #FAF8F4 0%, #F5EADB 100%);
+  border: 1px solid rgba(198, 169, 98, 0.35);
+  box-shadow: 0 4px 15px rgba(198, 169, 98, 0.15);
   display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px; transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
 }
-.team-orbit-1 {
-  position: absolute; width: 138px; height: 138px; border-radius: 50%;
-  border: 1px dashed rgba(198, 169, 98, 0.45);
-  animation: spinOrbit 22s linear infinite; pointer-events: none;
+.service-icon-box svg { width: 30px; height: 30px; color: var(--gold-dark); filter: drop-shadow(0 2px 4px rgba(166,138,62,0.3)); }
+.service-card:hover .service-icon-box {
+  transform: scale(1.08) rotate(3deg);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
 }
-.team-orbit-2 {
-  position: absolute; width: 154px; height: 154px; border-radius: 50%;
-  border: 1px solid rgba(198, 169, 98, 0.2);
-  border-top-color: var(--gold); border-left-color: transparent;
-  animation: spinOrbitReverse 30s linear infinite; pointer-events: none;
-}
-.team-card:hover .team-orbit-1 { border-style: solid; border-color: var(--gold); }
-.team-card:hover .team-orbit-2 { border-color: var(--gold-light); opacity: 0.8; }
+.service-card:hover .service-icon-box svg { color: var(--white); filter: none; }
 
-.team-photo {
-  width: 118px; height: 118px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #FFFDF9 0%, #F5EAE0 35%, #D4AF37 75%, #8B6E1F 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  box-shadow: 0 0 0 4px var(--white), 0 0 0 7px rgba(198,169,98,0.35), 0 12px 28px rgba(166,138,62,0.35);
-  position: relative; z-index: 2; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+.service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
+.service-card p { font-size: 0.9375rem; color: var(--ink-60); line-height: 1.65; margin-bottom: 20px; }
+.service-link {
+  font-size: 0.8125rem; font-weight: 600; color: var(--gold-dark);
+  display: inline-flex; align-items: center; gap: 6px; transition: gap 0.25s, color 0.25s;
 }
-.team-card:hover .team-photo { transform: scale(1.06); box-shadow: 0 0 0 4px var(--white), 0 0 0 8px rgba(198,169,98,0.5), 0 16px 36px rgba(166,138,62,0.45); }
+.service-card:hover .service-link { gap: 10px; color: var(--gold); }
 
-.team-photo-crest {
-  font-size: 1rem; line-height: 1; margin-bottom: 2px;
-  filter: drop-shadow(0 1px 2px rgba(139,110,31,0.5));
+/* === TEAM SECTION (APPLE & HIGGSFIELD PORTRAIT STYLE) === */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.team-portrait-card {
+  background: var(--white);
+  border-radius: var(--radius-lg); overflow: hidden;
+  border: 1.5px solid rgba(198, 169, 98, 0.25);
+  box-shadow: 0 12px 36px rgba(198, 169, 98, 0.10), 0 2px 8px rgba(26,26,26,0.03);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; flex-direction: column;
 }
-.team-photo-letters {
-  font-family: 'Playfair Display', serif; font-size: 1.85rem; font-weight: 700;
-  letter-spacing: 1px; line-height: 1;
-  color: #1A1A1A;
-  background: linear-gradient(135deg, #4A3A12 0%, #1A1A1A 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+.team-portrait-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 24px 60px rgba(198, 169, 98, 0.25), 0 6px 20px rgba(26,26,26,0.06);
+  border-color: var(--gold);
 }
 
-.team-badge {
-  display: inline-block; padding: 5px 16px; border-radius: var(--radius-pill);
-  background: var(--gold-pale); border: 1px solid rgba(198,169,98,0.3);
-  color: var(--gold-dark); font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 14px;
+.team-image-frame {
+  position: relative; width: 100%; height: 260px; overflow: hidden;
+  background: #F5EFE0;
 }
-.team-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
-.team-role { font-size: 0.875rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 14px; }
-.team-bio { font-size: 0.875rem; color: var(--ink-60); line-height: 1.65; margin-bottom: 22px; }
-.team-cred {
+.team-img-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center top;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.team-portrait-card:hover .team-img-bg { transform: scale(1.06); }
+
+.team-image-frame::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,26,26,0) 40%, rgba(26,26,26,0.55) 100%);
+}
+.team-floating-badge {
+  position: absolute; top: 16px; left: 16px; z-index: 2;
+  padding: 5px 14px; border-radius: var(--radius-pill);
+  background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 169, 98, 0.4);
+  color: var(--gold-dark); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.team-card-content {
+  padding: 28px 26px 32px; text-align: left; flex: 1;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.team-card-content h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.team-card-content .team-role { font-size: 0.875rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 12px; }
+.team-card-content .team-bio { font-size: 0.875rem; color: var(--ink-60); line-height: 1.65; margin-bottom: 18px; }
+.team-card-content .team-cred {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.8125rem; color: var(--ink-80); font-weight: 500;
+  font-size: 0.78rem; color: var(--ink-80); font-weight: 500;
   background: rgba(198,169,98,0.12); border: 1px solid rgba(198,169,98,0.22);
-  padding: 8px 16px; border-radius: var(--radius-pill);
-  transition: all 0.3s;
-}
-.team-card:hover .team-cred {
-  background: var(--gold-pale); border-color: var(--gold);
+  padding: 8px 14px; border-radius: var(--radius-pill);
 }
 
 /* === CTA BANNER (CINEMATIC HERO-LEVEL PORTAL) === */
@@ -765,41 +672,100 @@ body {
     <h2 class="section-title">Cuidado dental de<br>nivel superior.</h2>
     <p class="section-desc">Haz clic en cualquier tratamiento para conocer el procedimiento detallado, tecnología y tiempos de recuperación.</p>
     <div class="services-grid">
+      <!-- Service 1 -->
       <div class="service-card" onclick="openServiceModal('estetica')">
-        <div class="service-icon">🦷</div>
-        <h3>Estética Dental</h3>
-        <p>Carillas de porcelana ultrafinas, blanqueamiento láser y diseño de sonrisa digital con resultados naturales.</p>
-        <span class="service-link">Ver Procedimiento →</span>
+        <div class="service-card-bg" style="background-image: url('imagenes/smile-results.webp');"></div>
+        <div>
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l2.4 5 5.6.8-4 4 1 5.6-5-2.6-5 2.6 1-5.6-4-4 5.6-.8z"/>
+            </svg>
+          </div>
+          <h3>Estética Dental</h3>
+          <p>Carillas de porcelana ultrafinas, blanqueamiento láser y diseño de sonrisa digital con resultados naturales.</p>
+        </div>
+        <span class="service-link">Ver Procedimiento Clínico →</span>
       </div>
+
+      <!-- Service 2 -->
       <div class="service-card" onclick="openServiceModal('implantes')">
-        <div class="service-icon">🔬</div>
-        <h3>Implantología 3D</h3>
-        <p>Implantes biocompatibles de titanio con tomografía guiada por ordenador y precisión milimétrica.</p>
-        <span class="service-link">Ver Procedimiento →</span>
+        <div class="service-card-bg" style="background-image: url('imagenes/clinic-room-2.webp');"></div>
+        <div>
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h3>Implantología 3D</h3>
+          <p>Implantes biocompatibles de titanio con tomografía guiada por ordenador y precisión milimétrica.</p>
+        </div>
+        <span class="service-link">Ver Procedimiento Clínico →</span>
       </div>
+
+      <!-- Service 3 -->
       <div class="service-card" onclick="openServiceModal('ortodoncia')">
-        <div class="service-icon">✨</div>
-        <h3>Ortodoncia Invisible</h3>
-        <p>Alineadores transparentes de última generación. Endereza tus dientes de manera discreta y cómoda.</p>
-        <span class="service-link">Ver Procedimiento →</span>
+        <div class="service-card-bg" style="background-image: url('imagenes/clinic-room-1.webp');"></div>
+        <div>
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h3>Ortodoncia Invisible</h3>
+          <p>Alineadores transparentes de última generación. Endereza tus dientes de manera discreta y cómoda.</p>
+        </div>
+        <span class="service-link">Ver Procedimiento Clínico →</span>
       </div>
+
+      <!-- Service 4 -->
       <div class="service-card" onclick="openServiceModal('prevencion')">
-        <div class="service-icon">🛡️</div>
-        <h3>Prevención Avanzada</h3>
-        <p>Diagnóstico precoz con escáner intraoral 3D. Cuidamos tu salud antes de cualquier molestia.</p>
-        <span class="service-link">Ver Procedimiento →</span>
+        <div class="service-card-bg" style="background-image: url('imagenes/clinic-room-2.webp');"></div>
+        <div>
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>Prevención Avanzada</h3>
+          <p>Diagnóstico precoz con escáner intraoral 3D. Cuidamos tu salud bucodental antes de cualquier molestia.</p>
+        </div>
+        <span class="service-link">Ver Procedimiento Clínico →</span>
       </div>
+
+      <!-- Service 5 -->
       <div class="service-card" onclick="openServiceModal('rehabilitacion')">
-        <div class="service-icon">💎</div>
-        <h3>Rehabilitación Oral</h3>
-        <p>Reconstrucciones completas y coronas de circonio monolítico fabricadas con tecnología CAD/CAM.</p>
-        <span class="service-link">Ver Procedimiento →</span>
+        <div class="service-card-bg" style="background-image: url('imagenes/hero-clinic.webp');"></div>
+        <div>
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h12l4 6-10 13L2 9z"></path>
+              <path d="M11 3L8 9l4 13 4-13-3-6"></path>
+              <path d="M2 9h20"></path>
+            </svg>
+          </div>
+          <h3>Rehabilitación Oral</h3>
+          <p>Reconstrucciones completas y coronas de circonio monolítico fabricadas con tecnología CAD/CAM.</p>
+        </div>
+        <span class="service-link">Ver Procedimiento Clínico →</span>
       </div>
+
+      <!-- Service 6 -->
       <div class="service-card" onclick="openServiceModal('sedacion')">
-        <div class="service-icon">🌿</div>
-        <h3>Sedación Consciente</h3>
-        <p>Tratamientos 100% libres de estrés y ansiedad, supervisados por médicos anestesiólogos certificados.</p>
-        <span class="service-link">Ver Procedimiento →</span>
+        <div class="service-card-bg" style="background-image: url('imagenes/clinic-room-3.webp');"></div>
+        <div>
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V17a1 1 0 0 1-2 0v-.07A7 7 0 0 1 5.07 11H5a1 1 0 0 1 0-2h.07A7 7 0 0 1 11 5.07V5a1 1 0 0 1 2 0v.07A7 7 0 0 1 18.93 11H19a1 1 0 0 1 0 2h-.07A7 7 0 0 1 13 16.93z"></path>
+            </svg>
+          </div>
+          <h3>Sedación Consciente</h3>
+          <p>Tratamientos 100% libres de estrés y ansiedad, supervisados por médicos anestesiólogos certificados.</p>
+        </div>
+        <span class="service-link">Ver Procedimiento Clínico →</span>
       </div>
     </div>
   </div>
@@ -880,54 +846,51 @@ body {
     
     <div class="team-grid">
       <!-- Doctor 1 -->
-      <div class="team-card">
-        <div class="team-avatar-wrap">
-          <div class="team-orbit-1"></div>
-          <div class="team-orbit-2"></div>
-          <div class="team-photo">
-            <span class="team-photo-crest">⚜️</span>
-            <span class="team-photo-letters">AV</span>
-          </div>
+      <div class="team-portrait-card">
+        <div class="team-image-frame">
+          <div class="team-img-bg" style="background-image: url('imagenes/doctor-carlos.webp');"></div>
+          <span class="team-floating-badge">Director Clínico</span>
         </div>
-        <span class="team-badge">Director Clínico</span>
-        <h3>Dr. Alejandro Vega</h3>
-        <div class="team-role">Implantología & Cirugía 3D</div>
-        <p class="team-bio">20 años de trayectoria médica. Formado en la Universidad de Nueva York y pionero en carga inmediata.</p>
-        <div class="team-cred">🎓 NYU College of Dentistry · +3,000 Implantes</div>
+        <div class="team-card-content">
+          <div>
+            <h3>Dr. Alejandro Vega</h3>
+            <div class="team-role">Implantología & Cirugía 3D</div>
+            <p class="team-bio">20 años de trayectoria médica. Formado en la Universidad de Nueva York y pionero en carga inmediata.</p>
+          </div>
+          <div class="team-cred">🎓 NYU College of Dentistry · +3,000 Implantes</div>
+        </div>
       </div>
 
       <!-- Doctor 2 -->
-      <div class="team-card">
-        <div class="team-avatar-wrap">
-          <div class="team-orbit-1"></div>
-          <div class="team-orbit-2"></div>
-          <div class="team-photo">
-            <span class="team-photo-crest">💎</span>
-            <span class="team-photo-letters">CR</span>
-          </div>
+      <div class="team-portrait-card">
+        <div class="team-image-frame">
+          <div class="team-img-bg" style="background-image: url('imagenes/doctora-elena.webp');"></div>
+          <span class="team-floating-badge">Estética Dental</span>
         </div>
-        <span class="team-badge">Estética & Ortodoncia</span>
-        <h3>Dra. Carmen Rueda</h3>
-        <div class="team-role">Diseño Digital de Sonrisa</div>
-        <p class="team-bio">Especialista en carillas de porcelana y alineadores invisibles. Formada en Milán y Barcelona.</p>
-        <div class="team-cred">✨ DSD Master · Universidad de Milán</div>
+        <div class="team-card-content">
+          <div>
+            <h3>Dra. Carmen Rueda</h3>
+            <div class="team-role">Diseño Digital de Sonrisa</div>
+            <p class="team-bio">Especialista en carillas de porcelana y alineadores invisibles. Formada en Milán y Barcelona.</p>
+          </div>
+          <div class="team-cred">✨ DSD Master · Univ. de Milán</div>
+        </div>
       </div>
 
       <!-- Doctor 3 -->
-      <div class="team-card">
-        <div class="team-avatar-wrap">
-          <div class="team-orbit-1"></div>
-          <div class="team-orbit-2"></div>
-          <div class="team-photo">
-            <span class="team-photo-crest">🌿</span>
-            <span class="team-photo-letters">MI</span>
-          </div>
+      <div class="team-portrait-card">
+        <div class="team-image-frame">
+          <div class="team-img-bg" style="background-image: url('imagenes/doctor-javier.webp');"></div>
+          <span class="team-floating-badge">Sedación & Ansiedad</span>
         </div>
-        <span class="team-badge">Odontopediatría & Sedación</span>
-        <h3>Dr. Mateo Ibáñez</h3>
-        <div class="team-role">Atención Sin Dolor · Ansiedad</div>
-        <p class="team-bio">Certificado en sedación consciente. Hace que la visita al dentista sea una experiencia agradable y en paz.</p>
-        <div class="team-cred">🛡️ SEDO Certificado · Cuidados Especiales</div>
+        <div class="team-card-content">
+          <div>
+            <h3>Dr. Mateo Ibáñez</h3>
+            <div class="team-role">Atención Sin Dolor · Odontopediatría</div>
+            <p class="team-bio">Certificado en sedación consciente. Hace que la visita al dentista sea una experiencia agradable y en paz.</p>
+          </div>
+          <div class="team-cred">🌿 SEDO Certificado · Cuidados Especiales</div>
+        </div>
       </div>
     </div>
   </div>
