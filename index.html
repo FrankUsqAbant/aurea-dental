@@ -321,6 +321,82 @@ body {
   display: inline-flex; align-items: center; gap: 6px; transition: gap 0.25s, color 0.25s;
 }
 .service-card:hover .service-link { gap: 10px; color: var(--gold); }
+.why-aurea-split {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 52px; align-items: center;
+}
+.why-aurea-image {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  height: 480px; box-shadow: var(--shadow-lg); border: 1.5px solid rgba(198, 169, 98, 0.35);
+}
+.why-aurea-img-bg {
+  position: absolute; inset: 0; background-image: url('imagenes/clinic-room-2.webp');
+  background-size: cover; background-position: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.why-aurea-image:hover .why-aurea-img-bg { transform: scale(1.05); }
+.why-aurea-badge {
+  position: absolute; bottom: 24px; left: 24px; right: 24px;
+  background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(16px);
+  border: 1px solid rgba(198, 169, 98, 0.35); border-radius: var(--radius-md);
+  padding: 18px 22px; box-shadow: var(--shadow-md);
+}
+.why-aurea-badge h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 2px; }
+.why-aurea-badge p { font-size: 0.8125rem; color: var(--gold-dark); font-weight: 600; }
+
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px; }
+.feature-item { display: flex; gap: 18px; align-items: flex-start; }
+.feature-num {
+  font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold);
+  font-weight: 500; line-height: 1; flex-shrink: 0;
+}
+.feature-text h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+.feature-text p { font-size: 0.875rem; color: var(--ink-60); line-height: 1.6; }
+
+/* === BENTO CLINIC GALLERY === */
+.clinic-gallery {
+  display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; height: 460px;
+}
+.gallery-card {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-md); border: 1.5px solid rgba(198, 169, 98, 0.25);
+  cursor: pointer;
+}
+.gallery-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-card:hover .gallery-bg { transform: scale(1.06); }
+
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.25) 40%, rgba(26,26,26,0.82) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
+  transition: background 0.3s;
+}
+.gallery-card:hover .gallery-overlay {
+  background: linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.2) 30%, rgba(26,26,26,0.9) 100%);
+}
+.gallery-tag {
+  display: inline-block; padding: 4px 12px; border-radius: var(--radius-pill);
+  background: rgba(198, 169, 98, 0.9); color: var(--white);
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 8px; width: fit-content;
+}
+.gallery-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.gallery-sub { font-size: 0.8125rem; color: rgba(255,255,255,0.85); }
+
+.clinic-side { display: flex; flex-direction: column; gap: 20px; }
+.clinic-side .gallery-card { flex: 1; }
+.clinic-side .gallery-overlay { padding: 20px; }
+.clinic-side .gallery-title { font-size: 1.05rem; }
+
+@media (max-width: 768px) {
+  .why-aurea-split { grid-template-columns: 1fr; }
+  .why-aurea-image { height: 320px; }
+  .clinic-gallery { grid-template-columns: 1fr; height: auto; }
+  .clinic-main-card { height: 280px; }
+  .clinic-side .gallery-card { height: 200px; }
+}
 
 /* === TEAM SECTION (APPLE & HIGGSFIELD PORTRAIT STYLE) === */
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
