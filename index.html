@@ -386,30 +386,128 @@ body {
   .clinic-side .gallery-card { height: 200px; }
 }
 
-/* === TEAM SECTION (PRESERVED LUXURY MONOGRAMS) === */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+/* === TEAM SECTION (HERO-LEVEL GLOW & INTERACTION) === */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .team-card {
-  text-align: center; background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(12px); border-radius: var(--radius-md);
-  padding: 36px 24px; border: 1px solid var(--border);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center; background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg); padding: 44px 30px 36px;
+  border: 1.5px solid rgba(198, 169, 98, 0.22);
+  box-shadow: 0 10px 30px rgba(198, 169, 98, 0.08), 0 2px 6px rgba(26,26,26,0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative; overflow: hidden;
+}
+.team-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3.5px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), transparent);
+  opacity: 0; transition: opacity 0.3s;
 }
 .team-card:hover {
-  background: var(--white); transform: translateY(-6px);
-  box-shadow: var(--shadow-md); border-color: var(--gold);
+  background: var(--white); transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(198, 169, 98, 0.2), 0 6px 16px rgba(26,26,26,0.05);
+  border-color: var(--gold);
 }
-.team-photo {
-  width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
-  background: linear-gradient(135deg, #EDE0C8 0%, #D4B88C 50%, #C6A962 100%);
+.team-card:hover::before { opacity: 1; }
+
+.team-avatar-wrap {
+  position: relative; width: 130px; height: 130px; margin: 0 auto 24px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 600; color: var(--white);
-  box-shadow: 0 0 0 4px var(--white), 0 0 0 6px rgba(198,169,98,0.35), var(--shadow-md);
-  position: relative; transition: transform 0.4s;
 }
-.team-card:hover .team-photo { transform: scale(1.06); }
-.team-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
-.team-role { font-size: 0.8125rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 12px; }
-.team-bio { font-size: 0.875rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin: 0 auto; }
+.team-orbit-ring {
+  position: absolute; inset: -8px; border-radius: 50%;
+  border: 1px dashed rgba(198, 169, 98, 0.4);
+  animation: spinOrbit 25s linear infinite; pointer-events: none;
+}
+.team-card:hover .team-orbit-ring { border-style: solid; border-color: var(--gold); }
+
+.team-photo {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: linear-gradient(135deg, #FAF8F4 0%, #EDE0C8 40%, #C6A962 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 600;
+  color: var(--white); text-shadow: 0 2px 8px rgba(166, 138, 62, 0.4);
+  box-shadow: 0 0 0 4px var(--white), 0 0 0 6px rgba(198,169,98,0.3), var(--shadow-md);
+  position: relative; z-index: 2; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.team-card:hover .team-photo { transform: scale(1.05); }
+
+.team-badge {
+  display: inline-block; padding: 4px 14px; border-radius: var(--radius-pill);
+  background: var(--gold-pale); color: var(--gold-dark);
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.team-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.team-role { font-size: 0.875rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 14px; }
+.team-bio { font-size: 0.875rem; color: var(--ink-60); line-height: 1.65; margin-bottom: 20px; }
+.team-cred {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.75rem; color: var(--ink-80); font-weight: 500;
+  background: rgba(198,169,98,0.1); padding: 5px 12px; border-radius: var(--radius-pill);
+}
+
+/* === CTA BANNER (CINEMATIC HERO-LEVEL PORTAL) === */
+.cta-banner {
+  position: relative; overflow: hidden; padding: 120px 40px; text-align: center; color: var(--white);
+  background: linear-gradient(135deg, #181614 0%, #25201B 50%, #12100E 100%);
+}
+.cta-banner-bg-img {
+  position: absolute; inset: 0;
+  background-image: url('imagenes/clinic-room-3.webp');
+  background-size: cover; background-position: center;
+  opacity: 0.22; filter: contrast(110%) saturate(120%);
+  mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+  transform: scale(1.05); animation: heroPulse 12s ease-in-out infinite alternate;
+}
+.cta-ambient-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 650px; height: 450px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 169, 98, 0.32) 0%, rgba(223, 202, 149, 0.08) 60%, transparent 80%);
+  filter: blur(60px); pointer-events: none;
+}
+.cta-orbit-ring {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  border-radius: 50%; border: 1px solid rgba(198, 169, 98, 0.25); pointer-events: none;
+}
+.cta-orbit-1 { width: 520px; height: 520px; animation: spinOrbit 28s linear infinite; border-top-color: var(--gold); border-left-color: transparent; }
+.cta-orbit-2 { width: 680px; height: 680px; animation: spinOrbitReverse 36s linear infinite; border-bottom-color: var(--gold); border-right-color: transparent; opacity: 0.6; }
+
+.cta-glass-card {
+  max-width: 780px; margin: 0 auto; padding: 56px 48px; border-radius: var(--radius-lg);
+  background: rgba(30, 26, 22, 0.65); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(198, 169, 98, 0.35);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(198, 169, 98, 0.1);
+  position: relative; z-index: 3;
+}
+.cta-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: var(--radius-pill);
+  background: rgba(198, 169, 98, 0.2); border: 1px solid rgba(198, 169, 98, 0.4);
+  color: var(--gold-light); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;
+}
+.cta-banner .section-title {
+  color: var(--white); font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  line-height: 1.15; margin-bottom: 18px;
+}
+.cta-banner .section-desc {
+  color: rgba(250, 248, 244, 0.85); font-size: 1.125rem;
+  max-width: 580px; margin: 0 auto 36px; line-height: 1.75;
+}
+.cta-btn-glow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 40px; border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F4 100%);
+  color: var(--ink); text-decoration: none; font-weight: 700; font-size: 1rem;
+  box-shadow: 0 10px 35px rgba(255, 255, 255, 0.25), 0 0 30px rgba(198, 169, 98, 0.35);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;
+}
+.cta-btn-glow:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: var(--gold-pale);
+  box-shadow: 0 16px 45px rgba(198, 169, 98, 0.5), 0 0 40px rgba(255, 255, 255, 0.4);
+}
 
 /* === TESTIMONIALS === */
 .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
@@ -447,21 +545,6 @@ body {
   display: none; border-top: 1px solid rgba(198,169,98,0.1); padding-top: 16px;
 }
 .faq-item.active .faq-body { display: block; }
-
-/* === CTA BANNER === */
-.cta-banner {
-  background: linear-gradient(135deg, #1A1A1A 0%, #2A2520 50%, #151412 100%);
-  color: var(--white); text-align: center; padding: 90px 40px; position: relative; overflow: hidden;
-}
-.cta-banner::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(198,169,98,0.15) 0%, transparent 70%);
-}
-.cta-banner .section-label { color: var(--gold-light); }
-.cta-banner .section-title { color: var(--white); }
-.cta-banner .section-desc { color: rgba(255,255,255,0.7); margin-left: auto; margin-right: auto; }
-.cta-banner .btn-primary { background: var(--white); color: var(--ink); box-shadow: 0 8px 30px rgba(255,255,255,0.2); }
-.cta-banner .btn-primary:hover { background: var(--gold-pale); transform: translateY(-2px); box-shadow: 0 12px 35px rgba(198, 169, 98, 0.4); }
 
 /* === CONTACT === */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
@@ -768,13 +851,49 @@ body {
 <!-- TEAM -->
 <section class="section" id="equipo">
   <div class="section-inner">
-    <div class="section-label">Equipo Médico</div>
+    <div class="section-label">Equipo Médico Especializado</div>
     <h2 class="section-title">Conoce a quienes<br>cuidan de ti.</h2>
-    <p class="section-desc">Un equipo de élite donde cada sonrisa tiene detrás a los mejores especialistas.</p>
+    <p class="section-desc">Un equipo de élite donde cada sonrisa tiene detrás a los mejores especialistas con formación internacional.</p>
+    
     <div class="team-grid">
-      <div class="team-card"><div class="team-photo">AV</div><h3>Dr. Alejandro Vega</h3><div class="team-role">Director Clínico · Implantología</div><p class="team-bio">20 años de experiencia. Formado en la Universidad de Nueva York. +3,000 implantes colocados con éxito.</p></div>
-      <div class="team-card"><div class="team-photo">CR</div><h3>Dra. Carmen Rueda</h3><div class="team-role">Estética Dental · Ortodoncia</div><p class="team-bio">Especialista en diseño de sonrisa digital. Formación en Milán y Barcelona. El detalle es su firma.</p></div>
-      <div class="team-card"><div class="team-photo">MI</div><h3>Dr. Mateo Ibáñez</h3><div class="team-role">Odontopediatría · Sedación</div><p class="team-bio">Certificado en sedación consciente. Hace que el cuidado dental sea una experiencia agradable y sin dolor.</p></div>
+      <!-- Doctor 1 -->
+      <div class="team-card">
+        <div class="team-avatar-wrap">
+          <div class="team-orbit-ring"></div>
+          <div class="team-photo">AV</div>
+        </div>
+        <span class="team-badge">Director Clínico</span>
+        <h3>Dr. Alejandro Vega</h3>
+        <div class="team-role">Implantología & Cirugía 3D</div>
+        <p class="team-bio">20 años de trayectoria médica. Formado en la Universidad de Nueva York y pionero en carga inmediata.</p>
+        <div class="team-cred">🎓 NYU College of Dentistry · +3,000 Implantes</div>
+      </div>
+
+      <!-- Doctor 2 -->
+      <div class="team-card">
+        <div class="team-avatar-wrap">
+          <div class="team-orbit-ring"></div>
+          <div class="team-photo">CR</div>
+        </div>
+        <span class="team-badge">Estética & Ortodoncia</span>
+        <h3>Dra. Carmen Rueda</h3>
+        <div class="team-role">Diseño Digital de Sonrisa</div>
+        <p class="team-bio">Especialista en carillas de porcelana y alineadores invisibles. Formada en Milán y Barcelona.</p>
+        <div class="team-cred">✨ DSD Master · Universidad de Milán</div>
+      </div>
+
+      <!-- Doctor 3 -->
+      <div class="team-card">
+        <div class="team-avatar-wrap">
+          <div class="team-orbit-ring"></div>
+          <div class="team-photo">MI</div>
+        </div>
+        <span class="team-badge">Odontopediatría & Sedación</span>
+        <h3>Dr. Mateo Ibáñez</h3>
+        <div class="team-role">Atención Sin Dolor · Ansiedad</div>
+        <p class="team-bio">Certificado en sedación consciente. Hace que la visita al dentista sea una experiencia agradable y en paz.</p>
+        <div class="team-cred">🌿 SEDO Certificado · Cuidados Especiales</div>
+      </div>
     </div>
   </div>
 </section>
@@ -845,13 +964,22 @@ body {
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA HERO-LEVEL PORTAL -->
 <section class="cta-banner">
+  <div class="cta-banner-bg-img"></div>
+  <div class="cta-ambient-glow"></div>
+  <div class="cta-orbit-ring cta-orbit-1"></div>
+  <div class="cta-orbit-ring cta-orbit-2"></div>
+  
   <div class="section-inner">
-    <div class="section-label">Primera Visita</div>
-    <h2 class="section-title">Tu primera consulta<br>es un diagnóstico completo.</h2>
-    <p class="section-desc">Escáner 3D, valoración personalizada y un plan de tratamiento a medida. Sin compromiso y sin prisas.</p>
-    <a href="#contacto" class="btn-primary">Reservar Mi Diagnóstico →</a>
+    <div class="cta-glass-card">
+      <div class="cta-badge">⭐ Experiencia Boutique · Sin Compromiso</div>
+      <h2 class="section-title">Tu primera consulta es un<br>diagnóstico digital 3D completo.</h2>
+      <p class="section-desc">Escáner intraoral en alta definición, valoración personalizada por nuestros especialistas y un plan de tratamiento transparente diseñado a tu medida.</p>
+      <a href="#contacto" class="cta-btn-glow">
+        <span>Reservar Mi Diagnóstico Digital →</span>
+      </a>
+    </div>
   </div>
 </section>
 
