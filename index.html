@@ -297,16 +297,50 @@ body {
 }
 .service-card:hover .service-link { gap: 10px; color: var(--gold); }
 
-/* === WHY AUREA FEATURES === */
-.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 64px; }
-.feature-item { display: flex; gap: 24px; align-items: flex-start; }
-.feature-num {
-  font-family: 'Playfair Display', serif; font-size: 2.75rem; color: var(--gold);
-  font-weight: 500; line-height: 1; flex-shrink: 0;
-  text-shadow: 0 4px 12px rgba(198,169,98,0.25);
+/* === WHY AUREA FEATURES (SPLIT VISUAL) === */
+.why-aurea-split {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 52px; align-items: center;
 }
-.feature-text h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
-.feature-text p { font-size: 0.9375rem; color: var(--ink-60); line-height: 1.65; }
+.why-aurea-image {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  height: 480px; box-shadow: var(--shadow-lg); border: 1.5px solid rgba(198, 169, 98, 0.35);
+}
+.why-aurea-img-bg {
+  position: absolute; inset: 0; background-image: url('imagenes/clinic-room-2.webp');
+  background-size: cover; background-position: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.why-aurea-image:hover .why-aurea-img-bg { transform: scale(1.04); }
+.why-aurea-badge {
+  position: absolute; bottom: 24px; left: 24px; right: 24px;
+  background: rgba(250, 248, 244, 0.9); backdrop-filter: blur(16px);
+  border: 1px solid rgba(198, 169, 98, 0.3); border-radius: var(--radius-md);
+  padding: 16px 20px; box-shadow: var(--shadow-md);
+}
+.why-aurea-badge h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--ink); margin-bottom: 2px; }
+.why-aurea-badge p { font-size: 0.8125rem; color: var(--gold-dark); font-weight: 500; }
+
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px; }
+.feature-item { display: flex; gap: 18px; align-items: flex-start; }
+.feature-num {
+  font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold);
+  font-weight: 500; line-height: 1; flex-shrink: 0;
+}
+.feature-text h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+.feature-text p { font-size: 0.875rem; color: var(--ink-60); line-height: 1.6; }
+
+/* === CTA BANNER WITH AMBIENT IMAGE === */
+.cta-banner {
+  position: relative; overflow: hidden; padding: 110px 40px; text-align: center; color: var(--white);
+  background-image: url('imagenes/clinic-room-3.webp');
+  background-size: cover; background-position: center; background-attachment: fixed;
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(26,26,26,0.92) 0%, rgba(38,32,24,0.88) 100%);
+  backdrop-filter: blur(4px);
+}
+.cta-banner .section-inner { position: relative; z-index: 2; }
 
 /* === BENTO CLINIC GALLERY === */
 .clinic-gallery {
@@ -665,17 +699,27 @@ body {
   </div>
 </section>
 
-<!-- WHY AUREA -->
+<!-- WHY AUREA (SPLIT WITH COHESIVE IMAGE) -->
 <section class="section" id="nosotros">
   <div class="section-inner">
     <div class="section-label">Por Qué Áurea</div>
     <h2 class="section-title">No todas las clínicas<br>son iguales.</h2>
     <p class="section-desc">Lo que nos distingue no es solo la tecnología — es cómo la usamos para servirte mejor en un entorno de paz absoluta.</p>
-    <div class="features-grid">
-      <div class="feature-item"><div class="feature-num">01</div><div class="feature-text"><h3>Tecnología de Precisión</h3><p>Escáner intraoral 3D, tomografía CBCT y fresadora CAD/CAM en clínica. Fabricamos coronas en una sola visita.</p></div></div>
-      <div class="feature-item"><div class="feature-num">02</div><div class="feature-text"><h3>Especialistas Dedicados</h3><p>Cada área tiene un responsable experto con formación internacional. Maestros dedicados a su disciplina.</p></div></div>
-      <div class="feature-item"><div class="feature-num">03</div><div class="feature-text"><h3>Atención Personalizada</h3><p>Máximo 8 pacientes al día. Cada consulta es un momento de calma, sin esperas ni salas abarrotadas.</p></div></div>
-      <div class="feature-item"><div class="feature-num">04</div><div class="feature-text"><h3>Garantía por Escrito</h3><p>Todos nuestros tratamientos incluyen garantía documentada. Porque la excelencia se demuestra.</p></div></div>
+    
+    <div class="why-aurea-split">
+      <div class="why-aurea-image">
+        <div class="why-aurea-img-bg"></div>
+        <div class="why-aurea-badge">
+          <h4>Gabinete Tecnológico de Precisión</h4>
+          <p>Tomografía 3D · Escáner Intraoral · Sillón Ergonómico</p>
+        </div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item"><div class="feature-num">01</div><div class="feature-text"><h3>Tecnología de Precisión</h3><p>Escáner intraoral 3D, tomografía CBCT y fresadora CAD/CAM en clínica. Fabricamos coronas en una sola visita.</p></div></div>
+        <div class="feature-item"><div class="feature-num">02</div><div class="feature-text"><h3>Especialistas Dedicados</h3><p>Cada área tiene un responsable experto con formación internacional. Maestros dedicados a su disciplina.</p></div></div>
+        <div class="feature-item"><div class="feature-num">03</div><div class="feature-text"><h3>Atención Personalizada</h3><p>Máximo 8 pacientes al día. Cada consulta es un momento de calma, sin esperas ni salas abarrotadas.</p></div></div>
+        <div class="feature-item"><div class="feature-num">04</div><div class="feature-text"><h3>Garantía por Escrito</h3><p>Todos nuestros tratamientos incluyen garantía documentada. Porque la excelencia se demuestra.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
